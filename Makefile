@@ -10,12 +10,14 @@ stop:
 clean: stop
 	docker-compose rm -f
 
+compile:
+	docker-compose run --rm $(SERVICE) sbt compile
+
 run:
-	docker-compose run --rm $(SERVICE) scalac HelloWorld.scala
-	docker-compose run --rm $(SERVICE) scala HelloWorld.scala
+	docker-compose run --rm $(SERVICE) sbt run
 
 shell:
-	docker-compose exec $(SERVICE) bash
+	docker-compose run --rm app bash
 
 ps:
 	docker-compose ps
